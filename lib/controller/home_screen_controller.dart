@@ -73,18 +73,17 @@ class HomeScreenController extends ChangeNotifier {
               (item.area ?? "").toLowerCase().contains(country.toLowerCase()))
           .toList();
     }
-    if (_query.isNotEmpty)
-    {
+    if (_query.isNotEmpty) {
       updateSearchQuery(_query);
     }
   }
 
-
-  void onItemClicked(Location? item, BuildContext context)  async{
+  void onItemClicked(Location? item, BuildContext context) async {
     item?.address = item?.address?.replaceAll("\n", " ");
     ItemDetail = item;
     Navigator.pushNamed(context, "/details_screen");
-    _goToTheTcsLocation(onGetLocation(LatLng(ItemDetail?.geometry?.lat??0,ItemDetail?.geometry?.lng??0)));
+    _goToTheTcsLocation(onGetLocation(LatLng(
+        ItemDetail?.geometry?.lat ?? 0, ItemDetail?.geometry?.lng ?? 0)));
     notifyListeners();
   }
 
@@ -97,18 +96,15 @@ class HomeScreenController extends ChangeNotifier {
   }
 
   final Completer<GoogleMapController> mapController =
-  Completer<GoogleMapController>();
+      Completer<GoogleMapController>();
 
-  CameraPosition onGetLocation(LatLng latlng)
-  {
-      CameraPosition _kGooglePlex = CameraPosition(
+  CameraPosition onGetLocation(LatLng latlng) {
+    CameraPosition _kGooglePlex = CameraPosition(
       target: latlng,
       zoom: 14.4746,
     );
     return _kGooglePlex;
   }
-
-
 
   Future<void> _goToTheTcsLocation(CameraPosition val) async {
     final GoogleMapController controller = await mapController.future;

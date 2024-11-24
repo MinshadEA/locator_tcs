@@ -35,7 +35,11 @@ class _HomePageScreenState extends State<HomePageScreen> {
           alignment: Alignment.centerLeft,
           child: const Text(
             "TCS Locator",
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,fontFamily: "MontserratRegular",fontSize: 18),
+            style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontFamily: "MontserratRegular",
+                fontSize: 18),
           ),
         ),
         backgroundColor: Colors.black,
@@ -89,11 +93,13 @@ class _HomePageScreenState extends State<HomePageScreen> {
                   showModalBottomSheet(
                       context: context,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.vertical(top: Radius.circular(0)),
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(0)),
                       ),
                       builder: (context) {
                         return Container(
-                          padding: EdgeInsets.symmetric(horizontal: 0,vertical: 10),
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 0, vertical: 10),
                           color: Colors.white,
                           height: 770,
                           child: ListView.separated(
@@ -108,31 +114,37 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                     SizedBox(
                                       height: 7,
                                     ),
-                                    Padding(padding: EdgeInsets.symmetric(vertical: 0,horizontal: 15),
-                                    child: Text(
-                                      (country ?? ""),
-                                      style: const TextStyle(
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 0, horizontal: 15),
+                                      child: Text(
+                                        (country ?? ""),
+                                        style: const TextStyle(
                                           fontSize: 12,
                                           color: Colors.black,
                                           fontWeight: FontWeight.normal,
-                                        fontFamily: "MontserratMedium",),
-                                    ),)
-
+                                          fontFamily: "MontserratMedium",
+                                        ),
+                                      ),
+                                    )
                                   ],
                                 ),
-                                onTap: () => cnt.onSortByClicked(country,context),
+                                onTap: () =>
+                                    cnt.onSortByClicked(country, context),
                               );
                             },
-                            separatorBuilder: (BuildContext context, int index) {
+                            separatorBuilder:
+                                (BuildContext context, int index) {
                               return Column(
                                 children: [
-                                SizedBox(
-                                height: 7,
-                                ),
-                                Divider(
-                                color: Colors.black12,
-                                thickness: 1, // Add padding to the right of the line
-                              )
+                                  SizedBox(
+                                    height: 7,
+                                  ),
+                                  Divider(
+                                    color: Colors.black12,
+                                    thickness:
+                                        1, // Add padding to the right of the line
+                                  )
                                 ],
                               );
                             },
@@ -141,9 +153,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
                       });
                 },
                 child: Container(
-                    padding: EdgeInsets.symmetric(
-                        vertical: 12, horizontal: 10),
-                    width: 80,// Space inside the box
+                    padding: EdgeInsets.symmetric(vertical: 12, horizontal: 10),
+                    width: 80, // Space inside the box
                     decoration: BoxDecoration(
                       color: Colors.white, // Box background color
                       borderRadius:
@@ -159,7 +170,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
-                                color: Colors.black,fontFamily: "MontserratRegular"),
+                                color: Colors.black,
+                                fontFamily: "MontserratRegular"),
                           ),
                         ),
                         SizedBox(
@@ -182,7 +194,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                 itemCount: (cnt.filteredtcslocations ?? []).length,
                 itemBuilder: (BuildContext context, int index) {
                   Location? location = cnt.filteredtcslocations?[index];
-            
+
                   return GestureDetector(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -199,11 +211,15 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                     fontWeight: FontWeight.bold,
                                     fontFamily: "MontserratRegular"),
                               ),
-                              SizedBox(height: 5,),
+                              SizedBox(
+                                height: 5,
+                              ),
                               Text(
                                 (location?.fulllocation ?? ""),
                                 style: const TextStyle(
-                                    fontSize: 12, color: Colors.black87,fontFamily: "MontserratMedium"),
+                                    fontSize: 12,
+                                    color: Colors.black87,
+                                    fontFamily: "MontserratMedium"),
                               ),
                             ],
                           ),
