@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:locator_tcs/api/api_service.dart';
@@ -40,15 +42,16 @@ class HomeScreenController extends ChangeNotifier {
 
   void updateSearchQuery(String query) {
     _query = query;
-    selectedCountry=query;
-    if (_query == "") {
+    if (_query.isEmpty) {
       sortList(selectedCountry);
     } else {
-      filteredtcslocations = (tcsLocation?.locations ?? [])
-          .where((item) {
-            return
-             (item.area ?? "").toLowerCase().contains("latin");
-          })
+      filteredtcslocations = (filteredtcslocations ?? [])
+          .where((item) =>
+              (item.location ?? "")
+                  .toLowerCase()
+                  .contains(_query.toLowerCase()) ||
+              (item.geo ?? "").toLowerCase().contains(_query.toLowerCase()) ||
+              (item.area ?? "").toLowerCase().contains(_query.toLowerCase()))
           .toList();
     }
     notifyListeners();
@@ -57,7 +60,6 @@ class HomeScreenController extends ChangeNotifier {
   void onSortByClicked(String? item, BuildContext context) {
     selectedCountry = item ?? "";
     sortList(selectedCountry);
-    selectedCountry = "ABC";
     notifyListeners();
     Navigator.pop(context);
   }
@@ -71,23 +73,19 @@ class HomeScreenController extends ChangeNotifier {
               (item.area ?? "").toLowerCase().contains(country.toLowerCase()))
           .toList();
     }
-    print("country: $country");
-    print(filteredtcslocations);
-    //updateSearchQuery(_query);
-  }
-
-  String truncateText(String text) {
-    if (text.length > 3) {
-      return text.substring(0, 3) + '..';
+    if (_query.isNotEmpty)
+    {
+      updateSearchQuery(_query);
     }
-    return text;
   }
 
-  void onItemClicked(Location? item, BuildContext context) {
+
+  void onItemClicked(Location? item, BuildContext context)  async{
     item?.address = item?.address?.replaceAll("\n", " ");
-    //initialPosition=LatLng(item?.geometry?.lat??37.7749, item?.geometry?.lng??-122.4194);
     ItemDetail = item;
     Navigator.pushNamed(context, "/details_screen");
+    _goToTheTcsLocation(onGetLocation(LatLng(ItemDetail?.geometry?.lat??0,ItemDetail?.geometry?.lng??0)));
+    notifyListeners();
   }
 
   void OpenDialer(String phone) async {
@@ -96,5 +94,24 @@ class HomeScreenController extends ChangeNotifier {
 
   void OpenEmail(String email) async {
     await launchUrl(Uri(scheme: 'mailto', path: email));
+  }
+
+  final Completer<GoogleMapController> mapController =
+  Completer<GoogleMapController>();
+
+  CameraPosition onGetLocation(LatLng latlng)
+  {
+      CameraPosition _kGooglePlex = CameraPosition(
+      target: latlng,
+      zoom: 14.4746,
+    );
+    return _kGooglePlex;
+  }
+
+
+
+  Future<void> _goToTheTcsLocation(CameraPosition val) async {
+    final GoogleMapController controller = await mapController.future;
+    await controller.animateCamera(CameraUpdate.newCameraPosition(val));
   }
 }

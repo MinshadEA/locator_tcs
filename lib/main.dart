@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:locator_tcs/controller/home_screen_controller.dart';
 import 'package:locator_tcs/screen/details_screen.dart';
 import 'package:locator_tcs/screen/home_screen.dart';
-import 'package:locator_tcs/screen/splash_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {

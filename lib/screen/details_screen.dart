@@ -19,7 +19,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
         appBar: AppBar(
           title: const Text(
             "TCS Locator",
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,fontFamily: "MontserratRegular",fontSize: 18),
           ),
           iconTheme: IconThemeData(color: Colors.white),
           backgroundColor: Colors.black,
@@ -40,11 +40,13 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 child: Container(
               color: Colors.black54,
                   child:GoogleMap(
+
                     initialCameraPosition: CameraPosition(
                       target: cnt.initialPosition,
                       zoom: 10.0,
                     ),
                     onMapCreated: (GoogleMapController controller) {
+                      cnt.mapController.complete(controller);
                     },
                     myLocationEnabled: true, // Enables the "My Location" button
                     mapType: MapType.normal, // Map type: normal, satellite, hybrid, terrain
@@ -66,14 +68,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             Text(
                               ("TCS Center Name"),
                               style: const TextStyle(
-                                  fontSize: 10, color: Colors.grey),
+                                  fontSize: 10, color: Colors.black54,fontFamily: "MontserratMedium"),
                             ),
                             Text(
                               (cnt.ItemDetail?.location ?? ""),
                               style: const TextStyle(
                                   fontSize: 14,
                                   color: Colors.black,
-                                  fontWeight: FontWeight.bold),
+                                  fontWeight: FontWeight.bold,fontFamily: "MontserratMedium"),
                             ),
                           ],
                         )),
@@ -81,7 +83,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           child:
                           Icon(
                             Icons.business, // Sort icon
-                            color: Colors.grey, // Icon color
+                            color: Colors.black54, // Icon color
                             size: 25.0, // Icon size
                           ),
                         )
@@ -98,14 +100,15 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                 Text(
                                   ("Location"),
                                   style: const TextStyle(
-                                      fontSize: 10, color: Colors.grey),
+                                      fontSize: 10, color: Colors.black54,fontFamily: "MontserratMedium"),
                                 ),
                                 Text(
                                   (cnt.ItemDetail?.fulllocation??""),
                                   style: const TextStyle(
                                       fontSize: 14,
                                       color: Colors.black,
-                                      fontWeight: FontWeight.bold),
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: "MontserratMedium"),
                                 ),
                               ],
                             )),
@@ -113,7 +116,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           child:
                           Icon(
                             Icons.pin_drop, // Sort icon
-                            color: Colors.grey, // Icon color
+                            color: Colors.black54, // Icon color
                             size: 25.0, // Icon size
                           ),
                         )
@@ -131,14 +134,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                   Text(
                                     ("Phone"),
                                     style: const TextStyle(
-                                        fontSize: 10, color: Colors.grey),
+                                        fontSize: 10, color: Colors.black54,fontFamily: "MontserratMedium"),
                                   ),
                                   Text(
-                                    (cnt.ItemDetail?.phone??""),
+                                    (cnt.ItemDetail?.phone??"NILL"),
                                     style: const TextStyle(
                                         fontSize: 14,
                                         color: Colors.black,
-                                        fontWeight: FontWeight.bold),
+                                        fontWeight: FontWeight.bold,fontFamily: "MontserratMedium"),
                                   ),
                                 ],
                               )),
@@ -146,7 +149,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             child:
                             Icon(
                               Icons.call, // Sort icon
-                              color: Colors.grey, // Icon color
+                              color: Colors.black54, // Icon color
                               size: 25.0, // Icon size
                             ),
                           )
@@ -166,14 +169,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                   Text(
                                     ("Email"),
                                     style: const TextStyle(
-                                        fontSize: 10, color: Colors.grey),
+                                        fontSize: 10, color: Colors.black54,fontFamily: "MontserratMedium"),
                                   ),
                                   Text(
                                     (cnt.ItemDetail?.email??""),
                                     style: const TextStyle(
                                         fontSize: 14,
                                         color: Colors.black,
-                                        fontWeight: FontWeight.bold),
+                                        fontWeight: FontWeight.bold,fontFamily: "MontserratMedium"),
                                   ),
                                 ],
                               )),
@@ -181,7 +184,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             child:
                             Icon(
                               Icons.email, // Sort icon
-                              color: Colors.grey, // Icon color
+                              color: Colors.black54, // Icon color
                               size: 25, // Icon size
                             ),
                           )
@@ -198,14 +201,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         Text(
                           ("Address"),
                           style: const TextStyle(
-                              fontSize: 10, color: Colors.grey),
+                              fontSize: 10, color: Colors.black54,fontFamily: "MontserratMedium"),
                         ),
                         Text(
                           (cnt.ItemDetail?.address??""),
                           style: const TextStyle(
                               fontSize: 14,
                               color: Colors.black,
-                              fontWeight: FontWeight.bold),
+                              fontWeight: FontWeight.bold,fontFamily: "MontserratMedium"),
                         ),
                       ],
                     ),
@@ -217,14 +220,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         Text(
                           ("Office Type"),
                           style: const TextStyle(
-                              fontSize: 10, color: Colors.grey),
+                              fontSize: 10, color: Colors.black54,fontFamily: "MontserratMedium"),
                         ),
                         Text(
                           (cnt.ItemDetail?.officetype??""),
                           style: const TextStyle(
                               fontSize: 14,
                               color: Colors.black,
-                              fontWeight: FontWeight.bold),
+                              fontWeight: FontWeight.bold,fontFamily: "MontserratMedium"),
                         ),
                       ],
                     ),

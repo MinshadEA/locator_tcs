@@ -61,6 +61,16 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  fonts:
+    - family: MontserratMedium
+      fonts:
+        - asset: assets/fonts/Montserrat-Medium.ttf
+    - family: MontserratRegular
+      fonts:
+        - asset: assets/fonts/Montserrat-Regular.ttf
+    - family: MontserratBold
+      fonts:
+        - asset: assets/fonts/Montserrat-Bold.ttf
 
   # To add assets to your application, add an assets section, like this:
   assets:
