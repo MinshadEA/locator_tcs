@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:locator_tcs/controller/home_screen_controller.dart';
 import 'package:provider/provider.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class DetailsScreen extends StatefulWidget {
   const DetailsScreen({super.key});
@@ -38,6 +39,16 @@ class _DetailsScreenState extends State<DetailsScreen> {
             Expanded(
                 child: Container(
               color: Colors.black54,
+                  child:GoogleMap(
+                    initialCameraPosition: CameraPosition(
+                      target: cnt.initialPosition,
+                      zoom: 10.0,
+                    ),
+                    onMapCreated: (GoogleMapController controller) {
+                    },
+                    myLocationEnabled: true, // Enables the "My Location" button
+                    mapType: MapType.normal, // Map type: normal, satellite, hybrid, terrain
+                  ),
             )),
             Expanded(
                 child: Container(
